@@ -3,10 +3,10 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App" style={{ backgroundColor: 'white' }}>
+    <div className="App" style={{ backgroundColor: '#843e4b' }}>
       <nav className="Tabs">
         <a href="#home" className="Logo">
-          <img src="FF_IconLogo.png" alt="FF_Logo" className="Inverted" />
+          <img src="Icon.png" alt="FF_Logo" className="Inverted" />
         </a>
         <ul>
         <li><a href="#buy" style={{ color: '#fcfcfc' }}>BUY</a></li>
@@ -18,7 +18,7 @@ function App() {
 
       <div className="Container">
         <div className="Welcome">
-          <img src="FreshFarm_Logo.png" alt="Main Logo" className="WelcomeLogo" />
+          <img src="Logo(3).png" alt="Main Logo" className="WelcomeLogo" />
         </div>
 
         <div className="Content">

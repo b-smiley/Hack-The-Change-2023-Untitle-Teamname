@@ -67,7 +67,7 @@
 .WelcomeLogo {
   max-width: 100%;
   height: auto;
-  max-height: 200px; /* Set a maximum height for the logo if needed */
+  max-height: 500px; /* Set a maximum height for the logo if needed */
 }
 
 .Content {
