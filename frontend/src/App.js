@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+// app.js
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> gabagoo.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import React from 'react';
+import './App.css'
+
+const zoneStyle = {
+  width: '100%',
+  minHeight: '30vh',
+  position: 'relative',
+};
+const App = () => {
+  return(
+    <div className = 'App'>
+      <div className = 'header'>
+        <h1>Farmville</h1>
+      </div>
+      <div className="zone zone1" style={zoneStyle}>
+        <div className="blend-overlay"></div>
+      </div>
+      <div className="zone zone2" style={zoneStyle}>
+        <div className="blend-overlay"></div>
+      </div>
     </div>
   );
-}
+};
 
 export default App;

@@ -1,6 +1,5 @@
 # app.py
-
-place_api =  'AIzaSyBHOjpmNJXrZHTRijtphPn6KfX3_lQACLI'
+import credentials
 
 from flask import Flask, jsonify
 
@@ -13,7 +12,7 @@ def hello():
 
 @app.route('/about')
 def about():
-    return jsonify(message="This is the about page.")    
+    return jsonify(message="This is the about page.")
 
 @app.route('/search')
 def search(keyword = 'farmers', location = '51.0447, -114,0719', search_radius = 20000):
@@ -24,17 +23,16 @@ def search(keyword = 'farmers', location = '51.0447, -114,0719', search_radius =
             'location' : location,
             'radius' : search_radius,
             'keyword' : keyword,
-            'key' : place_api
+            'key' : APIKEY
         }
-        #response = requests.get(google_places_url, params = search_params) get brandon to help me
-        response = None
+        response = requests.get(google_places_url, params = search_parameters)
     else:
         error_message = {"error" : "invalid data type"}
         return jsonify(error_message), 1
     
-    if response.status_code == 200:
-        #data = response.json()
-        #results = data.get('results', [])
+    if (response.status_code == 200):
+        data = response.json()
+        results = data.get('results', [])
         return jsonify(message='successful search')
     else:
         return jsonify(error='Error fetching data from Google Places API'), 2
