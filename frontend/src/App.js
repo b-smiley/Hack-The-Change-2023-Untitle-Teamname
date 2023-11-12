@@ -29,7 +29,7 @@ function App() {
     </Router>
     {/* Button that querys backend */}
     <button onClick={async () => {
-      const response = await fetch('http://localhost:5000/your_route');
+      const response = await fetch('http://localhost:5000/suggest_recipes');
       const body = await response.json();
       alert(body.message);
     }}>Test backend</button>

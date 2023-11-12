@@ -174,7 +174,7 @@ def login():
 def find_nearby():
     return jsonify(sellers=local_sellers)
 
-@app.route('/suggest_recipe')
+@app.route('/suggest_recipes')
 def suggest_recipe():
     suggested_recipes = store_recipes()
     return jsonify(recipes=suggested_recipes)
