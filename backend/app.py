@@ -63,7 +63,7 @@ user_accounts = {
 spoonacular_api_url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients"
 spoonacular_api_key = "890c62c74bmsh414e51d5f58e58fp162991jsn4fc0d39db092"
 
-def generate_suggested_recipe(seasonal_ingredients):
+def generate_suggested_recipes(seasonal_ingredients):
     headers = {
         "X-RapidAPI-Key": spoonacular_api_key,
         "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
@@ -71,7 +71,7 @@ def generate_suggested_recipe(seasonal_ingredients):
 
     params = {
         "ingredients": ",".join(seasonal_ingredients),
-        "number": 1,  # Adjust as needed for the number of suggested recipes
+        "number": 5,  # Adjust as needed for the number of suggested recipes
         "ranking": 1
     }
 
@@ -80,11 +80,42 @@ def generate_suggested_recipe(seasonal_ingredients):
     if response.status_code == 200:
         data = response.json()
         if data:
-            return data[0]  # Return the first suggested recipe
+            return data
         else:
             return {"message": "No recipes found with the given ingredients."}
     else:
         return {"error": "Failed to fetch recipe from Spoonacular API."}
+
+def find_total_products():
+    total_products = []
+    for seller in local_sellers:
+        for product_type, products in seller["products"].items():
+            for product in products:
+                total_products.append(product)
+    return total_products
+
+def find_sellers_with_product(product):
+    sellers_with_product = []
+    for seller in local_sellers:
+        for product_type, products in seller["products"].items():
+            if product in products:
+                sellers_with_product.append(seller)
+    return sellers_with_product
+
+def store_recipes():
+    ingredients = find_total_products()
+    recipes = generate_suggested_recipes(ingredients)
+    recipe_dict = []
+
+    for recipe in recipes:
+        current_recipe = {
+            "title": recipe["title"],
+            "image": recipe["image"],
+            "usedIngredients": [ingredient["name"] for ingredient in recipe["usedIngredients"]]
+        }
+        recipe_dict.append(current_recipe)
+
+    return recipe_dict
 
 @app.route('/')
 def hello():
@@ -146,16 +177,10 @@ def login():
 def find_nearby():
     return jsonify(sellers=local_sellers)
 
-@app.route('/suggest_recipe', methods=['POST'])
+@app.route('/suggest_recipe')
 def suggest_recipe():
-    data = request.get_json()
-    seasonal_ingredients = data.get('seasonal_ingredients', [])
-
-    if not seasonal_ingredients:
-        return jsonify(error="Please provide seasonal ingredients."), 400
-
-    suggested_recipe = generate_suggested_recipe(seasonal_ingredients)
-    return jsonify(recipe=suggested_recipe)
+    suggested_recipes = store_recipes()
+    return jsonify(recipes=suggested_recipes)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
