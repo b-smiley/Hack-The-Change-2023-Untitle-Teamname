@@ -2,7 +2,7 @@
 import credentials
 from flask import Flask, jsonify, request
 import requests
-
+APIKEY = credentials.APIKEY
 
 app = Flask(__name__)
 
@@ -90,10 +90,6 @@ def generate_suggested_recipe(seasonal_ingredients):
 def hello():
     return jsonify(message="Hello from Sachin!")
 
-@app.route('/about')
-def about():
-    return jsonify(message="This is the about page.")
-
 @app.route('/search')
 def search(keyword = 'farmers', location = '51.0447, -114,0719', search_radius = 20000):
 
@@ -113,7 +109,7 @@ def search(keyword = 'farmers', location = '51.0447, -114,0719', search_radius =
     if (response.status_code == 200):
         data = response.json()
         results = data.get('results', [])
-        return jsonify(message='successful search')
+        return jsonify(message="Successful Search")
     else:
         return jsonify(error='Error fetching data from Google Places API'), 2
     

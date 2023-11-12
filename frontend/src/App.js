@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 
+
+
 function App() {
   return (
     <div className="App" style={{ backgroundColor: '#843e4b' }}>
@@ -9,6 +11,7 @@ function App() {
           <img src="Icon.png" alt="FF_Logo" className="Inverted" />
         </a>
         <ul>
+        <li><a href="/about" style={{ color: '#fcfcfc' }}>ABOUT_US</a></li>
         <li><a href="#buy" style={{ color: '#fcfcfc' }}>BUY</a></li>
         <li><a href="#sell" style={{ color: '#fcfcfc' }}>SELL</a></li>
         <li><a href="#recipes" style={{ color: '#fcfcfc' }}>RECIPES</a></li>
