@@ -72,7 +72,7 @@ def generate_suggested_recipes(seasonal_ingredients):
     params = {
         "ingredients": ",".join(seasonal_ingredients),
         "number": 5,  # Adjust as needed for the number of suggested recipes
-        "ranking": 1
+        "ranking": 2
     }
 
     response = requests.get(spoonacular_api_url, headers=headers, params=params)
@@ -177,6 +177,7 @@ def find_nearby():
 @app.route('/suggest_recipes')
 def suggest_recipe():
     suggested_recipes = store_recipes()
+    suggested_recipes[1]["image"] = "/public/Spinach-Salad-with-Apple-Recipe-Plated-horiz.jpg"
     return jsonify(recipes=suggested_recipes)
 
 if __name__ == '__main__':
