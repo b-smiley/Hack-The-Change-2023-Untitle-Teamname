@@ -3,7 +3,7 @@ import credentials
 from flask import Flask, jsonify, request
 import requests
 
-
+APIKEY = credentials.APIKEY
 app = Flask(__name__)
 
 # Sample data for demonstration purposes
@@ -117,13 +117,36 @@ def store_recipes():
 
     return recipe_dict
 
+def reverse_geocode(latitude, longitude):
+    reverse_geocode_url = 'https://maps.googleapis.com/maps/api/geocode/json'
+    reverse_geocode_params = {
+        'latlng': f'{latitude},{longitude}',
+        'key': APIKEY
+    }
+
+    try:
+        response = requests.get(reverse_geocode_url, params=reverse_geocode_params)
+        response.raise_for_status()  # Check for HTTP errors
+
+        data = response.json()
+        results = data.get('results', [])
+        if results:
+            formatted_address = results[0].get('formatted_address')
+            return formatted_address
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error in reverse geocoding: {e}")
+
+    return None
+
+
 @app.route('/')
 def hello():
     return jsonify(message="Hello from Sachin!")
 
 
 @app.route('/search')
-def search(keyword = 'farmers', location = '51.0447, -114,0719', search_radius = 20000):
+def search(keyword = 'farmers market', location = '51.0447, -114.0719', search_radius = 2000):
 
     if (type(keyword) == str and type(location) == str and type(search_radius) == int):
         google_places_url = f'https://maps.googleapis.com/maps/api/place/nearbysearch/json'
@@ -138,14 +161,55 @@ def search(keyword = 'farmers', location = '51.0447, -114,0719', search_radius =
         error_message = {"error" : "invalid data type"}
         return jsonify(error_message), 1
     
-    if (response.status_code == 200):
+    try:
+        response = requests.get(google_places_url, params=search_parameters)
+        response.raise_for_status()  # Check for HTTP errors
+
         data = response.json()
-        results = data.get('results', [])
-        return jsonify(message='successful search')
-    else:
-        return jsonify(error='Error fetching data from Google Places API'), 2
+        farmers_markets = []
+        for place in data.get('results', []):
+            place_id = place.get('place_id')
+            name = place.get('name')
+            location = place.get('geometry', {}).get('location', {})
+            latitude = location.get('lat')
+            longitude = location.get('lng')
+            address = reverse_geocode(latitude, longitude)
+            farmers_markets.append({
+                "name" : [name, address]
+            })
+            
+    except requests.exceptions.RequestException as e:
+        print(f"Error making the request: {e}")
     
-    return jsonify(message='ggg')
+    cheese_list = [
+        "blue cheese", "cheddar", "brie", "gouda", "feta",
+        "mozzarella", "goat cheese", "swiss", "provolone", "parmigiano-reggiano"
+    ]
+
+    fruit_list = [
+        "apples", "grapes", "strawberries", "pears", "kiwi",
+        "bananas", "peaches", "blueberries", "mangoes", "pineapple"
+    ]
+
+    vegetable_list = [
+        "celery", "carrots", "broccoli", "bell peppers", "spinach",
+        "tomatoes", "asparagus", "cucumber", "zucchini", "sweet potatoes"
+    ]
+
+    meat_list = [
+        "beef", "chicken", "pork", "lamb", "turkey",
+        "salmon", "duck", "veal", "venison", "buffalo"
+    ]
+    i = 0
+    for market in farmers_markets:
+        market['products'] = [cheese_list[i], fruit_list[i], vegetable_list[i], meat_list[i]]
+        i += 1;   
+        
+        
+        
+    
+    
+    return farmers_markets
 
 
 @app.route('/about')

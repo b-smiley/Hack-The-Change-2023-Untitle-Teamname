@@ -1,0 +1,27 @@
+.about{
+    background: linear-gradient(to bottom, #843E4B, #B15660);
+    text-align: center;
+    color: white;
+}
+
+.body{
+    margin: 20px 100px;
+}
+
+.sidebar-left {
+    width: 40px; /* Adjust the width of the vertical bars */
+    background-color: #253046; /* Set the color of the vertical bars */
+    height: 100vh; /* Make the bars cover the entire height of the viewport */
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  
+  .sidebar-right {
+    width: 40px;
+    background-color: #253046;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
