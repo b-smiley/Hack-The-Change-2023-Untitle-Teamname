@@ -34,8 +34,8 @@ const Home = () => {
       {/* Search Bar */}
       <div className="home_content">
         <div className="searchBar">
-          <input type="text" placeholder="Search..." />
-          <button type="submit">Location</button>
+          <input type="text" placeholder="Location" />
+          <button type="submit">Search</button>
         </div>
 
         {/* Display Loading component while data is loading */}

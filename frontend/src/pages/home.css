@@ -1,7 +1,11 @@
 .home_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .searchBar {
+  margin-top: 20px;
 }
 
 .marketCards {

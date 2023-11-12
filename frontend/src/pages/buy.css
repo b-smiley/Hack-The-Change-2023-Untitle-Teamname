@@ -1,0 +1,9 @@
+.buy-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.buyers_page_mockup {
+  width: 85%;
+  margin-bottom: 10px;
+}
