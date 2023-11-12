@@ -17,8 +17,6 @@ const Recipes = () => {
   return (
     <div>
       <h1>Locally Sourced Recipes</h1>
-      
-      
       {recipes.map(recipe => (
         <div key={recipe.title} style={{ marginBottom: '20px' }}>
           <img src={recipe.image} alt={recipe.title} style={{ maxWidth: '100%' }} />
