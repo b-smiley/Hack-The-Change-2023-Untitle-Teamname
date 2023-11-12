@@ -1,29 +1,42 @@
-/* Navbar container */
+/* styles.css */
+
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background-color: #333;
-  color: #fff;
+    background-color: #253046;
+    overflow: hidden;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* Logo */
 .navbar_logo {
-  display: flex;
-  align-items: center;
+    filter: invert(1) brightness(1);
+    width: 30%;
 }
 
-/* Navbar links */
 .navbar_links {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
 }
 
-/* Navbar link */
 .navbar_link {
-  margin-left: 1rem;
-  color: #fff;
-  text-decoration: none;
+    margin-right: 15px;
+}
+
+.navbar_link a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    display: inline-block;
+}
+
+.navbar_link a:hover {
+    background-color: #555;
+}
+
+/* Optional: Add a style for the active link */
+.navbar_link.active a {
+    background-color: #4CAF50;
 }
