@@ -63,7 +63,7 @@ user_accounts = {
 
 # Spoonacular API details
 spoonacular_api_url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients"
-spoonacular_api_key = "890c62c74bmsh414e51d5f58e58fp162991jsn4fc0d39db092"
+spoonacular_api_key = "Insert spoonacular_api_key" # ENTER API KEY
 
 def generate_suggested_recipes(seasonal_ingredients):
     headers = {
