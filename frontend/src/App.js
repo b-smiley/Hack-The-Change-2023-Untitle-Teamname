@@ -27,12 +27,6 @@ function App() {
         <Route path="*" element={<h1>404 - Page Not Found</h1>} />
       </Routes>
     </Router>
-    {/* Button that querys backend */}
-    <button onClick={async () => {
-      const response = await fetch('http://localhost:5000/suggest_recipes');
-      const body = await response.json();
-      alert(body.message);
-    }}>Test backend</button>
     </div>
     
   );

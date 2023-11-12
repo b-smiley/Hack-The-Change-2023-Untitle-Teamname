@@ -2,78 +2,15 @@
   text-align: center;
 }
 
-.Tabs {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  background-color: #253046;
-  z-index: 1000;
-}
-
-.Logo {
-  margin-right: auto;
-  text-decoration: none;
-}
-
-.Logo img {
-  height: 50px;
-  width: auto;
-}
-
-.Inverted {
-  filter: invert(1); /* Invert the colors of the image */
-}
-
-.Tabs ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-}
-
-.Tabs li {
-  margin-right: 20px;
-}
-
-.Tabs a {
-  text-decoration: none;
-  font-size: 20px;
-  text-transform: uppercase;
-}
-
-.Tabs a:hover {
-  color: #b15660;
-}
-
-.Tabs li:last-child a {
-  margin-right: 20px;
-}
-
-.Container {
-  margin-top: 80px; /* Adjust as needed based on the height of the top bar */
-  padding: 20px;
-}
-
 .Welcome {
+  /* Expand to fit remaining page */
   text-align: center;
-  margin-top: 40px; /* Adjust the margin as needed */
+  background-color: #903749;
+  
 }
 
 .WelcomeLogo {
   max-width: 100%;
   height: auto;
   max-height: 500px; /* Set a maximum height for the logo if needed */
-}
-
-.Content {
-  margin-top: 20px;
-  padding: 20px;
-  max-width: 10vw;
-  margin-left: auto;
-  margin-right: auto;
 }

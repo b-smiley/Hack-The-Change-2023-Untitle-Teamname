@@ -1,5 +1,7 @@
+// Login.js
 
 import React, { useState } from 'react';
+import './login.css'; // Import the CSS file
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -19,7 +21,7 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <label>
