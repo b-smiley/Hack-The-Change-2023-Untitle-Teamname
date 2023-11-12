@@ -90,9 +90,7 @@ def generate_suggested_recipe(seasonal_ingredients):
 def hello():
     return jsonify(message="Hello from Sachin!")
 
-@app.route('/about')
-def about():
-    return jsonify(message="This is the about page.")
+
 
 @app.route('/search')
 def search(keyword = 'farmers', location = '51.0447, -114,0719', search_radius = 20000):
