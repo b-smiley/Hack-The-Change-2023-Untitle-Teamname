@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ImageRenderer from '../components/ImageRenderer/ImageRenderer';
+
 const Recipes = () => {
   const [recipes, setRecipes] = useState([]);
   
-  let imageURL = "https://spoonacular.com/recipeImages/427528-312x231.jpg";
+  const imageURL = '';
   
   
   useEffect(() => {
@@ -16,10 +16,8 @@ const Recipes = () => {
   
   return (
     <div>
-      <h1>Recipes</h1>
-      <h1>Tester</h1>
-
-      <img src={imageURL} alt="Recipe Image" />
+      <h1>Locally Sourced Recipes</h1>
+      
       
       {recipes.map(recipe => (
         <div key={recipe.title} style={{ marginBottom: '20px' }}>
