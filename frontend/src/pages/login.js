@@ -1,11 +1,11 @@
 // Login.js
 
-import React, { useState } from 'react';
-import './login.css'; // Import the CSS file
+import React, { useState } from "react";
+import "./login.css"; // Import the CSS file
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -18,22 +18,27 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // handle login logic here
+    // TODO hook this up to the backend
   };
 
   return (
     <div className="container">
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input type="email" value={email} onChange={handleEmailChange} />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input type="password" value={password} onChange={handlePasswordChange} />
-        </label>
-        <br />
+        <input
+          type="email"
+          value={email}
+          onChange={handleEmailChange}
+          placeholder="Email"
+          required
+        />
+        <input
+          type="password"
+          value={password}
+          onChange={handlePasswordChange}
+          placeholder="Password"
+          required
+        />
         <button type="submit">Login</button>
       </form>
     </div>
