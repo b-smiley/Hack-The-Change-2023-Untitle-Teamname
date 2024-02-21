@@ -1,42 +1,62 @@
 /* styles.css */
 
 .navbar {
-    background-color: #253046;
-    overflow: hidden;
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: #253046;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navbar_logo {
-    filter: invert(1) brightness(1);
-    width: 30%;
+  filter: invert(1) brightness(1);
+  width: 30%;
+}
+
+.navbar_left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbar_title {
+  color: white;
+  font-size: 30px;
+  margin-left: 10px;
+  display: flex; /* Use flex display */
+  flex-direction: row; /* Set flex-direction to row */
+  align-items: center; /* Align items in the center */
 }
 
 .navbar_links {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
 .navbar_link {
-    margin-right: 15px;
+  margin-right: 15px;
 }
 
 .navbar_link a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    padding: 10px;
-    display: inline-block;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  display: inline-block;
+  font-size: 25px;
 }
 
 .navbar_link a:hover {
-    background-color: #555;
+  background-color: #555;
 }
 
 /* Optional: Add a style for the active link */
 .navbar_link.active a {
-    background-color: #4CAF50;
+  background-color: #4caf50;
+}
+
+.navbar_link.activeLink a {
+  background-color: #4caf50;
 }
