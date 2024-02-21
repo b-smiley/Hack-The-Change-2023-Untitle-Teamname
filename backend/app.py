@@ -4,7 +4,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import requests
 
-APIKEY = credentials.APIKEY
+GOOGLE_PLACES_API = credentials.GOOGLEPLACES
 app = Flask(__name__)
 CORS(app)
 
@@ -74,8 +74,8 @@ user_accounts = {
 # Spoonacular API details
 spoonacular_api_url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients"
 
-=======
-spoonacular_api_key = "Insert spoonacular_api_key" # ENTER API KEY
+spoonacular_api_key = credentials.SPOONTACULAR
+
 
 def generate_suggested_recipes(seasonal_ingredients):
     headers = {
@@ -139,7 +139,10 @@ def store_recipes():
 
 def reverse_geocode(latitude, longitude):
     reverse_geocode_url = "https://maps.googleapis.com/maps/api/geocode/json"
-    reverse_geocode_params = {"latlng": f"{latitude},{longitude}", "key": APIKEY}
+    reverse_geocode_params = {
+        "latlng": f"{latitude},{longitude}",
+        "key": GOOGLE_PLACES_API,
+    }
 
     try:
         response = requests.get(reverse_geocode_url, params=reverse_geocode_params)
@@ -172,7 +175,7 @@ def search(keyword="farmers market", location="51.0447, -114.0719", search_radiu
             "location": location,
             "radius": search_radius,
             "keyword": keyword,
-            "key": APIKEY,
+            "key": GOOGLE_PLACES_API,
         }
         response = requests.get(google_places_url, params=search_parameters)
     else:
